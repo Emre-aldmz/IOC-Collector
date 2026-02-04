@@ -1,0 +1,8 @@
+IP: 188.190.10.10
+Domain: promo-usa[.]info
+URL: hxxp://promo-usa[.]info/payload.exe
+Domain: api[.]ip[.]sb
+Email: attacker[@]evil[.]com
+CVE: CVE-2024-12345
+MITRE: T1071.001
+Hash: d41d8cd98f00b204e9800998ecf8427e
