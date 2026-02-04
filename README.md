@@ -1,10 +1,11 @@
 ![Python](https://img.shields.io/badge/Python-3.10%2B-blue)
 ![Status](https://img.shields.io/badge/Status-Working-success)
 
-
 # IOC Collector – Mini CTI Tool
 
-A Python-based command-line tool developed during Week 3 internship tasks to extract Indicators of Compromise (IOCs) from text files and export them in structured formats.
+A Python-based command-line tool developed during **Week 3 internship tasks** to extract
+**Indicators of Compromise (IOCs)** from text files and export them in structured formats
+for CTI and SOC workflows.
 
 ---
 
@@ -13,7 +14,7 @@ A Python-based command-line tool developed during Week 3 internship tasks to ext
 - Refang support
 - Unique IOC filtering
 - CSV export
-- Markdown report export
+- Markdown threat intelligence report export
 
 ---
 
@@ -28,25 +29,41 @@ proje-week3/
 │   └── cli.py
 ├── tests/
 │   └── sample_data/
+│       └── test_iocs.txt
 ├── ioc_export.csv
 ├── report.md
 ├── requirements.txt
 └── README.md
+```
 
 ## How to Run
+
+### Create virtual environment
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
-pip3 install -r requirements.txt
+```
 
-python3 -m ioc_collector.cli -f tests/sample_data/test_iocs.txt --refang --unique \
-  --export-csv ioc_export.csv --export-md report.md
-  
-## Outputs
-```md
-Outputs are generated in the project root directory.
-- `ioc_export.csv` – Extracted IOC list (CSV format)
-- `report.md` – Markdown threat intelligence report
 
-## Requirements
-- Python 3.10+
+### Install dependencies
+```bash
+pip install -r requirements.txt
+```
+
+### Run the tool
+```bash
+python3 -m ioc_collector.cli \
+  -f tests/sample_data/test_iocs.txt \
+  --refang \
+  --unique \
+  --export-csv ioc_export.csv \
+  --export-md report.md
+```
+
+## Example Output (CSV)
+```csv
+type,value,confidence,source,note
+ip,188.190.10.10,High,OSINT,RedLine Stealer C2 server
+domain,promo-usa.info,High,OSINT,Malicious domain
+domain,api.ip.sb,Medium,OSINT,Legitimate service abused
+```
