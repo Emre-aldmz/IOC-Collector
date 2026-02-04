@@ -32,10 +32,7 @@ proje-week3/
 ```bash
 python3 -m ioc_collector.cli -f tests/sample_data/test_iocs.txt --refang --unique \
 --export-csv ioc_export.csv --export-md report.md
-
----
-
-```md
+```
 ## Outputs
 - `ioc_export.csv` – Extracted IOC list (CSV format)
 - `report.md` – Markdown threat intelligence report
