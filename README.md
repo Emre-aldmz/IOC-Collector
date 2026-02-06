@@ -3,9 +3,7 @@
 
 # IOC Collector – Mini CTI Tool
 
-A Python-based command-line tool developed during **Week 3 internship tasks** to extract
-**Indicators of Compromise (IOCs)** from text files and export them in structured formats
-for CTI and SOC workflows.
+This Python-powered command-line interface (CLI) tool is designed to automate the extraction of Indicators of Compromise (IOCs) from unstructured text files. It streamlines the transition from raw data to actionable intelligence, making it an essential utility for Cyber Threat Intelligence (CTI) and Security Operations Center (SOC) workflows.
 
 ---
 
