@@ -2,3 +2,15 @@
 __pycache__/
 *.pyc
 .DS_Store
+*.egg-info/
+dist/
+build/
+
+# Üretilen çıktı dosyaları (#8.2, #8.3)
+*.csv
+report.md
+output/
+
+# Proje belgeleri (sadece lokal)
+ioc_collector_teknik_rapor.md
+TODO.md
