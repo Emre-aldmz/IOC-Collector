@@ -1,15 +1,11 @@
 """
 Text Formatter — Plain text çıktı formatı.
-Teknik rapor Bölüm 7.3.
 """
 from datetime import datetime, timezone
 
 
 def format_text(iocs: dict, source: str = "unknown") -> str:
-    """
-    IOC'ları plain text rapor formatında döndürür.
-    Teknik rapordaki örnek formata uygun.
-    """
+    """IOC'ları plain text rapor formatında döndürür."""
     now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S")
     lines = []
 

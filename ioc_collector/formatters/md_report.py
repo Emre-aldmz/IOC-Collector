@@ -2,10 +2,7 @@ from datetime import datetime, timezone
 
 
 def format_markdown_report(source: str, iocs: dict, total: int, confidence: str = "High") -> str:
-    """
-    Zenginleştirilmiş Markdown threat intelligence raporu (#6.7).
-    IOC tip dağılımı tablosu, tarih, confidence, executive summary içerir.
-    """
+    """Zenginleştirilmiş Markdown raporu üretir."""
     now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
     lines = []
 

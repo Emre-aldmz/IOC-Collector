@@ -1,7 +1,4 @@
-"""
-CVE Extractor — CVE tanımlayıcı çıkarma.
-Teknik rapor Bölüm 3.7.
-"""
+
 from typing import Set
 from .base import BaseExtractor
 

@@ -4,9 +4,8 @@
 
 ![Python](https://img.shields.io/badge/Python-3.9%2B-blue)
 ![Status](https://img.shields.io/badge/Status-Working-success)
-![Version](https://img.shields.io/badge/Version-1.2.0-orange)
 
-## 🚀 Özellikler
+## Özellikler
 
 - **Gelişmiş Extraction:** IPv4, IPv6, Domain, URL, Email, Hash (MD5, SHA1, SHA256, SHA512), CVE ve MITRE ATT&CK ID'lerini tespit eder.
 - **Doğrulama & Güvenlik:**
@@ -23,7 +22,7 @@
 - **Esnek Çıktı:** JSON, CSV, Plain Text, Markdown ve **STIX 2.1** formatlarında raporlama.
 - **Network Ayarları:** Proxy desteği ve SSL doğrulama kontrolü.
 
-## 📦 Kurulum
+## Kurulum
 
 ```bash
 # Projeyi klonlayın
@@ -37,7 +36,7 @@ pip install -r requirements.txt
 pip install .
 ```
 
-## 🛠 Kullanım
+## Kullanım
 
 ### Temel Komutlar
 
@@ -108,7 +107,7 @@ ioc-collector -f report.txt --tlp TLP:AMBER --confidence High
 ioc-collector -f report.txt --defang-output
 ```
 
-## 📊 Çıktı Formatları
+## Çıktı Formatları
 
 | Format | Açıklama |
 |--------|----------|
@@ -118,7 +117,7 @@ ioc-collector -f report.txt --defang-output
 | `md` | Markdown formatında, tablolar içeren şık rapor. |
 | `stix` | STIX 2.1 standardında JSON bundle (Threat Intelligence paylaşımı için). |
 
-## 🧪 Testler
+## Testler
 
 Proje kapsamlı bir test suite'e sahiptir:
 
@@ -126,13 +125,4 @@ Proje kapsamlı bir test suite'e sahiptir:
 python3 -m unittest discover tests -v
 ```
 
-## 🤝 Katkıda Bulunma
 
-1. Forklayın
-2. Feature branch oluşturun (`git checkout -b feature/amazing`)
-3. Commitlerinizi atın (`git commit -m 'Add amazing feature'`)
-4. Branch'inizi pushlayın (`git push origin feature/amazing`)
-5. Pull Request açın
-
----
-**Not:** Bu araç sadece eğitim ve savunma amaçlı geliştirilmiştir. İzinsiz tarama yapmayınız.

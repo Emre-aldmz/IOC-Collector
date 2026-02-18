@@ -1,6 +1,5 @@
 """
 Email Extractor — Email adresi çıkarma.
-Teknik rapor Bölüm 3.5.
 """
 from typing import Set
 from .base import BaseExtractor

@@ -5,10 +5,10 @@ from ..utils.defanger import refang
 from urllib.parse import urlparse
 from datetime import datetime, timezone
 
-# --- IPv4: Basit regex + ipaddress doğrulama ---
+# --- IPv4 ---
 IPV4_RE = re.compile(r"\b(?:\d{1,3}\.){3}\d{1,3}\b")
 
-# --- IPv6: Geniş regex + ipaddress doğrulama ---
+# --- IPv6 ---
 IPV6_RE = re.compile(
     r"\b(?:[0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}\b"
     r"|\b(?:[0-9a-fA-F]{1,4}:){1,7}:"
@@ -17,7 +17,7 @@ IPV6_RE = re.compile(
     r"|\b::(?:ffff:)?(?:\d{1,3}\.){3}\d{1,3}\b"
 )
 
-# --- Domain: genel regex, TLD whitelist ile doğrulanacak ---
+# --- Domain ---
 DOMAIN_RE = re.compile(
     r"\b(?:[a-zA-Z0-9](?:[a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?\.)+(?:[a-zA-Z]{2,})\b"
 )
@@ -37,10 +37,10 @@ EMAIL_RE = re.compile(
 # --- CVE ---
 CVE_RE = re.compile(r"\bCVE-\d{4}-\d{4,7}\b", re.IGNORECASE)
 
-# --- MITRE ATT&CK: Sadece büyük T ile başlar, IGNORECASE kaldırıldı (#1.4) ---
+# --- MITRE ATT&CK ---
 MITRE_RE = re.compile(r"\b[TS]\d{4}(?:\.\d{3})?\b")
 
-# --- Hash: Lookahead/lookbehind ile exact-length match (#1.2) ---
+# --- Hash ---
 SHA512_RE = re.compile(r"(?<![a-fA-F0-9])[a-fA-F0-9]{128}(?![a-fA-F0-9])")
 SHA256_RE = re.compile(r"(?<![a-fA-F0-9])[a-fA-F0-9]{64}(?![a-fA-F0-9])")
 SHA1_RE = re.compile(r"(?<![a-fA-F0-9])[a-fA-F0-9]{40}(?![a-fA-F0-9])")
@@ -80,7 +80,7 @@ RESERVED_DOMAINS = {
 
 
 def validate_ipv4(ip_str: str) -> bool:
-    """IPv4 adresini ipaddress modülü ile doğrular (#1.1)"""
+    """IPv4 adresini doğrular"""
     try:
         ipaddress.IPv4Address(ip_str)
         return True
@@ -98,7 +98,7 @@ def validate_ipv6(ip_str: str) -> bool:
 
 
 def validate_domain(domain: str) -> bool:
-    """Domain'i TLD whitelist'e karşı doğrular (#1.3)"""
+    """Domain doğrulaması yapar"""
     domain = domain.lower().strip()
 
     # Dosya uzantısı gibi görünen string'leri filtrele
@@ -152,11 +152,7 @@ def domains_from_urls(urls):
 
 
 def extract_hashes(text: str) -> Dict[str, List[str]]:
-    """
-    Hash'leri uzundan kısaya çıkarır, çakışmayı önler (#1.2).
-    SHA512 → SHA256 → SHA1 → MD5 sırasıyla çıkarılır.
-    Bulunan uzun hash'lerin substring'i olan kısa hash'ler filtrelenir.
-    """
+    """Hash'leri çıkarır."""
     found_positions = set()  # (start, end) pozisyonlarını takip et
 
     result = {
@@ -198,15 +194,15 @@ def extract_iocs(text: str, do_refang: bool = True, unique: bool = True) -> Dict
     raw = refang(text) if do_refang else text
     now = datetime.now(timezone.utc).isoformat()
 
-    # IPv4: regex + doğrulama (#1.1)
+    # IPv4
     raw_ipv4 = IPV4_RE.findall(raw)
     valid_ipv4 = [ip for ip in raw_ipv4 if validate_ipv4(ip)]
 
-    # IPv6: regex + doğrulama (#6.1)
+    # IPv6
     raw_ipv6 = IPV6_RE.findall(raw)
     valid_ipv6 = [ip for ip in raw_ipv6 if validate_ipv6(ip)]
 
-    # Hash'leri uzundan kısaya çıkar (#1.2)
+    # Hash'leri çıkar
     hashes = extract_hashes(raw)
 
     iocs = {
@@ -235,7 +231,7 @@ def extract_iocs(text: str, do_refang: bool = True, unique: bool = True) -> Dict
     if do_refang:
         iocs["emails"] = [refang(e) for e in iocs["emails"]]
 
-    # Deduplication: O(1) lookup ile (#5.3)
+    # Deduplication
     if unique:
         for k, v in iocs.items():
             if isinstance(v, list):

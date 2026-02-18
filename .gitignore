@@ -6,11 +6,11 @@ __pycache__/
 dist/
 build/
 
-# Üretilen çıktı dosyaları (#8.2, #8.3)
+# Üretilen çıktı dosyaları 
 *.csv
 report.md
 output/
 
-# Proje belgeleri (sadece lokal)
+# Proje belgeleri 
 ioc_collector_teknik_rapor.md
 TODO.md

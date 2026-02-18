@@ -1,6 +1,5 @@
 """
 Base Extractor — Tüm extractor'lar için temel sınıf.
-Teknik rapor Bölüm 6.1'de tanımlandığı gibi.
 """
 from abc import ABC, abstractmethod
 from typing import Set, List

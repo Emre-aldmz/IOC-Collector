@@ -1,6 +1,5 @@
 """
-IOC Enrichment — VirusTotal API entegrasyonu (#6.2).
-IOC'ları VirusTotal API ile zenginleştirme.
+IOC Enrichment — VirusTotal API entegrasyonu.
 """
 import logging
 import os

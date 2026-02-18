@@ -1,6 +1,5 @@
 """
 IP Extractor — IPv4 ve IPv6 adres çıkarma.
-Teknik rapor Bölüm 6.2.
 """
 import ipaddress
 from typing import Set

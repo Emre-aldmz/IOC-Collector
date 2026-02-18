@@ -13,7 +13,7 @@ from .sources.cert_feeds import CERTFeed
 
 
 def setup_logging(verbose: bool = False):
-    """Logging altyapısı (#5.2)"""
+    """Logging yapılandırması"""
     level = logging.DEBUG if verbose else logging.INFO
     logging.basicConfig(
         level=level,
@@ -96,7 +96,7 @@ def create_parser():
     meta_group.add_argument(
         "--tlp", default="TLP:CLEAR",
         choices=["TLP:CLEAR", "TLP:GREEN", "TLP:AMBER", "TLP:AMBER+STRICT", "TLP:RED"],
-        help="Traffic Light Protocol sınıflandırması (#6.4)"
+        help="Traffic Light Protocol sınıflandırması"
     )
 
     # Enrichment
@@ -122,43 +122,25 @@ def flatten_for_export(iocs: dict, source: str, default_confidence: str):
     """IOC sözlüğünü flat row listesine çevirir (CSV/export için)"""
     rows = []
 
-    # TODO #6.5: Dynamic Confidence Scoring defaults
-    # Kullanıcı CLI'dan spesifik bir confidence vermediyse bu değerleri kullanabiliriz
-    # Ancak şu an CLI default="High". Bunu "Dynamic" yapıp mantık ekleyelim mi?
-    # Ya da sadece IOC türüne göre map edelim.
-    
+    # Varsayılan confidence değerleri
     CONFIDENCE_MAP = {
-        "ipv4": "Low",       # IP'ler sık değişir
+        "ipv4": "Low",
         "ipv6": "Low",
-        "domain": "Medium",  # Domainler bir süre yaşar
-        "url": "Medium",     # URL'ler spesifiktir ama içerik değişebilir
-        "email": "High",     # Email adresleri kalıcıdır
-        "hash_md5": "High",  # Hash değişmez
+        "domain": "Medium",
+        "url": "Medium",
+        "email": "High",
+        "hash_md5": "High",
         "hash_sha1": "High",
         "hash_sha256": "High",
         "hash_sha512": "High",
-        "cve": "High",       # Zaafiyet tanımları kesindir
-        "mitre": "High",     # Teknik tanımları kesindir
+        "cve": "High",
+        "mitre": "High",
     }
 
     def get_confidence(ioc_type):
-        # Eğer kullanıcı özellikle bir confidence belirtmişse (arg.confidence != default?)
-        # CLI tarafında default "High" olduğu için bunu ayırt etmek zor.
-        # Basitlik için: Eğer default_confidence "High" (varsayılan) ise dinamik yapalım.
-        # Ama kullanıcı --confidence High dediyse?
-        # En temizi: Bu fonksiyonu CLI'dan bağımsız varsayılanları döndürecek şekilde yapalım,
-        # çağıran yer karar versin.
-        # Şimdilik mevcut mantığı koruyarak type-based override yapalım:
         return CONFIDENCE_MAP.get(ioc_type, default_confidence)
 
     def add_many(t, values, note):
-        # Dinamik confidence hesapla
-        # Not: Kullanıcı --confidence ile override ettiyse onu mu kullanalım?
-        # Kullanıcı isteği: "IOC tipine ve kaynak kontekstine göre dinamik confidence"
-        # Biz burada type-based bir "Base Confidence" atayalım.
-        # Eğer kaynak güvenilirse (örn: CISA feed) confidence artırılabilir.
-        
-        # Basit implementasyon: Type-based
         conf = get_confidence(t)
         
         for v in values:

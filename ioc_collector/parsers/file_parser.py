@@ -8,10 +8,7 @@ MAX_FILE_SIZE = 50 * 1024 * 1024  # 50 MB
 
 
 def read_file(path: str) -> str:
-    """
-    Dosyayı okur. Hata yönetimi ve boyut kontrolü içerir.
-    path="-" ise stdin'den okur (#5.6).
-    """
+    """Dosyayı okur."""
     # stdin desteği
     if path == "-":
         logger.info("stdin'den okuyor...")
@@ -28,7 +25,7 @@ def read_file(path: str) -> str:
     if not os.access(path, os.R_OK):
         raise PermissionError(f"Dosya okuma izni yok: {path}")
 
-    # Boyut kontrolü (#4.2)
+    # Boyut kontrolü
     file_size = os.path.getsize(path)
     if file_size > MAX_FILE_SIZE:
         raise ValueError(
@@ -47,7 +44,7 @@ def read_file(path: str) -> str:
 
 
 def read_multiple_files(paths: list) -> str:
-    """Birden fazla dosyayı okuyup birleştirir (#5.5)"""
+    """Birden fazla dosyayı okur."""
     contents = []
     for path in paths:
         try:

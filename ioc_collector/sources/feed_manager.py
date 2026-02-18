@@ -35,7 +35,7 @@ class FeedManager:
         self.feeds = self._load_feeds()
 
     def _ensure_config_exists(self):
-        """Creates default configuration directory and file if they don't exist."""
+        """Creates default configuration."""
         if not os.path.exists(os.path.dirname(self.config_path)):
             os.makedirs(os.path.dirname(self.config_path), exist_ok=True)
         
@@ -43,7 +43,7 @@ class FeedManager:
             self._create_default_config()
 
     def _load_feeds(self) -> Dict:
-        """Loads feeds from configuration file."""
+        """Loads feeds from config."""
         try:
             with open(self.config_path, 'r') as f:
                 return yaml.safe_load(f) or {}
@@ -69,7 +69,7 @@ class FeedManager:
         return self.feeds
 
     def add_feed(self, name: str, url: str, format_type: str = "text", feed_type: str = "custom"):
-        """Adds a new feed to the configuration."""
+        """Adds a new feed."""
         if name in self.feeds:
              logging.warning(f"Feed '{name}' already exists. Overwriting.")
         

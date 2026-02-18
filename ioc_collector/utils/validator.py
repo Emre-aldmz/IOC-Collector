@@ -1,6 +1,5 @@
 """
 IOC Validator — IOC doğrulama yardımcı modülü.
-Teknik rapor Bölüm 2.2 (utils/validator.py).
 """
 import ipaddress
 import re

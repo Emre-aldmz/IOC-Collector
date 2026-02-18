@@ -1,6 +1,5 @@
 """
-STIX 2.1 Formatter — IOC'ları STIX bundle formatında dışa aktarma (#6.3).
-python-stix2 kütüphanesi gerekmeden basit JSON STIX bundle üretir.
+STIX 2.1 Formatter.
 """
 import json
 import uuid

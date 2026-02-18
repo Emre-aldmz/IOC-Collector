@@ -26,9 +26,8 @@ class RemoteFetcher:
             requests_cache.install_cache(cache_dir, expire_after=3600) # 1 hour default
 
     def fetch(self, url: str, retries: int = 3, backoff_factor: float = 0.5) -> Optional[str]:
-        """
-        Fetches content from a URL with retries, exponential backoff, and caching.
-        """
+
+        """Fetches URL content."""
         for i in range(retries):
             try:
                 logging.info(f"Fetching {url} (Attempt {i+1}/{retries})")

@@ -1,7 +1,5 @@
 """
 Hash Extractor — MD5, SHA1, SHA256, SHA512 hash çıkarma.
-Teknik rapor Bölüm 6.3.
-Uzundan kısaya çıkararak hash çakışmasını önler.
 """
 import re
 from typing import Set, Dict
@@ -22,7 +20,7 @@ class HashExtractor(BaseExtractor):
         self.ioc_type = "hash"
 
     def extract(self, text: str) -> Dict[str, Set[str]]:
-        """Uzundan kısaya hash çıkarır, çakışmayı önler"""
+        """Hash'leri çıkarır"""
         results = {}
         found_positions = set()
 

@@ -2,10 +2,7 @@ import re
 
 
 def refang(text: str) -> str:
-    """
-    Defanged IOC'leri normale çevirir (refang).
-    hxxp -> http, [.] -> ., [@] -> @, [at] -> @, [dot] -> ., (.) -> . vb.
-    """
+    """Defanged IOC'leri normale çevirir."""
     replacements = [
         (r'hxxps://', 'https://'),
         (r'hxxp://', 'http://'),
@@ -26,10 +23,7 @@ def refang(text: str) -> str:
 
 
 def defang(text: str) -> str:
-    """
-    IOC'leri güvenli paylaşım için defanged formata çevirir.
-    http -> hxxp, . -> [.], @ -> [@] vb.
-    """
+    """IOC'leri güvenli paylaşım için defanged formata çevirir."""
     result = text
     result = result.replace('https://', 'hxxps://')
     result = result.replace('http://', 'hxxp://')

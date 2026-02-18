@@ -1,6 +1,5 @@
 """
 Domain Extractor — Domain adı çıkarma.
-Teknik rapor Bölüm 3.3.
 """
 from typing import Set
 from .base import BaseExtractor

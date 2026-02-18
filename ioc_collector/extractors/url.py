@@ -1,6 +1,5 @@
 """
 URL Extractor — URL çıkarma.
-Teknik rapor Bölüm 3.4.
 """
 from typing import Set
 from .base import BaseExtractor
